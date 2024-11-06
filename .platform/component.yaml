@@ -8,7 +8,7 @@ metadata:
     backstage.io/techdocs-ref: dir:..
     github.com/workflows: publish.yml,remove.yml
     kong-manager/service-name: app.testes-final-2.80
-    kong-manager/instance: /kong-manager/
+    kong-manager/instance: cluster-vkdr-local
 spec:
   type: devops
   lifecycle: experimental
