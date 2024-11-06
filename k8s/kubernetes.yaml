@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    konghq.com/methods: GET
+    konghq.com/regex-priority: "100"
+    konghq.com/strip-path: "false"
+    konghq.com/tags: ""
+    konghq.com/preserve-host: "false"
+  name: testes-final-2-viacep-viacep-getaddressbyzip-code
+spec:
+  ingressClassName: kong
+  rules:
+    - http:
+        paths:
+          - backend:
+              service:
+                name: testes-final-2
+                port:
+                  number: 80
+            path: /~/testes-final-2/ws/(?<zip_code>[^#?/]+)/json$
+            pathType: ImplementationSpecific
+      host: localhost
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    konghq.com/path: /
+    konghq.com/protocol: http
+  name: testes-final-2
+spec:
+  type: ExternalName
+  externalName: viacep.com.br
+---
+
